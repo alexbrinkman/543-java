@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Board {
 
@@ -120,13 +121,11 @@ public class Board {
   }
 
   private boolean[][] generateBoard() {
-    boolean[] row1 = new boolean[] { true, true, true };
-    boolean[] row2 = new boolean[] { true, true, true, true };
-    boolean[] row3 = new boolean[] { true, true, true, true, true };
-    boolean[][] position = new boolean[3][];
-    position[0] = row1;
-    position[1] = row2;
-    position[2] = row3;
+    boolean[][] position = new boolean[NUM_ROWS][];
+    for (int i = 0; i < NUM_ROWS; i++) {
+      position[i] = new boolean[FIRST_ROW_SIZE + i];
+      Arrays.fill(position[i], true);
+    }
     return position;
   }
 }

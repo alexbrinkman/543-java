@@ -8,24 +8,25 @@ public class Game {
   public void run() {
     System.out.println(this.board);
     while(true) {
-      makeMove();
-      if(board.winner()) {
-        System.out.println(this.whosMove + " wins!");
-        return;
+      try {
+        makeMove();
+        if (board.winner()) {
+          System.out.println(this.whosMove + " wins!");
+          return;
+        }
+        switchPlayers();
       }
-      switchPlayers();
+      catch (Exception e) {
+        System.out.println(e.getMessage());
+        System.out.println(this.board);
+      }
     }
   }
 
   public void makeMove() {
     if (this.whosMove.equals("player1")) {
       int[] move = promptForMove();
-      try {
-        this.board.move(move[0], move[1]);
-      }
-      catch (Exception e) {
-        System.out.println(e.getMessage());
-      }
+      this.board.move(move[0], move[1]);
     }
     else {
       this.board = new Search(this.board).findMove();
