@@ -72,7 +72,6 @@ public class Board {
     if (num >= totalPiecesLeft()) {
       throw new IllegalArgumentException("Invalid num: you may not take all remaining pieces.");
     }
-
   }
 
   private int piecesLeftInRow(int row) {

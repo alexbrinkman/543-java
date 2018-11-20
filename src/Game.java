@@ -9,7 +9,7 @@ public class Game {
     System.out.println(this.board);
     while(true) {
       makeMove();
-      if(board.winner()){
+      if(board.winner()) {
         System.out.println(this.whosMove + " wins!");
         return;
       }
@@ -18,7 +18,7 @@ public class Game {
   }
 
   public void makeMove() {
-    if (this.whosMove.equals("player1")){
+    if (this.whosMove.equals("player1")) {
       int[] move = promptForMove();
       try {
         this.board.move(move[0], move[1]);
@@ -43,7 +43,7 @@ public class Game {
   }
 
   private void switchPlayers() {
-    if(this.whosMove.equals("player1")){
+    if (this.whosMove.equals("player1")) {
       this.whosMove = "player2";
     }
     else {
