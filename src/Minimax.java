@@ -7,8 +7,13 @@ public class Minimax {
   }
 
   public Board search() {
+    System.out.println("Building tree...");
     MinimaxNode rootNode = new MinimaxNode(this.board).buildTree(this.board);
+
+    System.out.println("Evaluating positions...");
     rootNode = assignNodeValues(rootNode, "max");
+
+    System.out.println("Making best move...");
     MinimaxNode move = (MinimaxNode)bestNextMove(rootNode, "max")[1];
     return move.getBoard();
   }

@@ -1,16 +1,12 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Board {
-
-  public static final int FIRST_ROW_SIZE = 3;
-  public static final int NUM_ROWS = 3;
 
   private boolean[][] position;
 
   public Board(boolean[][] position) {
     if (position == null) {
-      this.position = generateBoard();
+      this.position = initialBoard();
     }
     else {
       this.position = position;
@@ -45,6 +41,7 @@ public class Board {
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder.append("---------\n");
     for (int i = 0; i < position.length; i++) {
+      stringBuilder.append("row " + (i + 1) + ": ");
       boolean[] row = position[i];
       for (int j = 0; j < row.length; j++) {
         if (row[j]) {
@@ -58,8 +55,8 @@ public class Board {
   }
 
   private void validateMove(int row, int num) {
-    if (row < 1 || row > NUM_ROWS) {
-      throw new IllegalArgumentException("Invalid row: please enter 1-" + NUM_ROWS + ".");
+    if (row < 1 || row > this.position.length) {
+      throw new IllegalArgumentException("Invalid row: please enter 1-" + this.position.length + ".");
     }
 
     if (num < 1) {
@@ -88,14 +85,14 @@ public class Board {
 
   private int totalPiecesLeft() {
     int count = 0;
-    for (int i = 0; i < NUM_ROWS; i++) {
+    for (int i = 0; i < this.position.length; i++) {
       count += piecesLeftInRow(i);
     }
     return count;
   }
 
   private boolean oneRowLeft() {
-    for (int i = 0; i < NUM_ROWS; i++) {
+    for (int i = 0; i < this.position.length; i++) {
       if (piecesLeftInRow(i) == totalPiecesLeft()) {
         return true;
       }
@@ -120,12 +117,11 @@ public class Board {
     return list;
   }
 
-  private boolean[][] generateBoard() {
-    boolean[][] position = new boolean[NUM_ROWS][];
-    for (int i = 0; i < NUM_ROWS; i++) {
-      position[i] = new boolean[FIRST_ROW_SIZE + i];
-      Arrays.fill(position[i], true);
-    }
+  private boolean[][] initialBoard() {
+    boolean[][] position = new boolean[3][];
+    position[0] = new boolean[] { true, true, true, true, true };
+    position[1] = new boolean[] { true, true, true, true, true };
+    position[2] = new boolean[] { true, true, true, true, true };
     return position;
   }
 }

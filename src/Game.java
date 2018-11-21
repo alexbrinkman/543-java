@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 public class Game {
 
-  Board board = new Board(null);
-  private String whosMove = "player1";
+  private Board board = new Board(null);
+  private String whosMove = "Human";
 
   public void run() {
     System.out.println(this.board);
@@ -23,8 +23,8 @@ public class Game {
     }
   }
 
-  public void makeMove() {
-    if (this.whosMove.equals("player1")) {
+  private void makeMove() {
+    if (this.whosMove.equals("Human")) {
       int[] move = promptForMove();
       this.board.move(move[0], move[1]);
     }
@@ -44,11 +44,11 @@ public class Game {
   }
 
   private void switchPlayers() {
-    if (this.whosMove.equals("player1")) {
-      this.whosMove = "player2";
+    if (this.whosMove.equals("Human")) {
+      this.whosMove = "Computer";
     }
     else {
-      this.whosMove = "player1";
+      this.whosMove = "Human";
     }
   }
 
