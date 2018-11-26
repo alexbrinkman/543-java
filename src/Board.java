@@ -119,8 +119,8 @@ public class Board {
 
   private boolean[][] initialBoard() {
     boolean[][] position = new boolean[3][];
-    position[0] = new boolean[] { true, true, true, true, true };
-    position[1] = new boolean[] { true, true, true, true, true };
+    position[0] = new boolean[] { true, true, true };
+    position[1] = new boolean[] { true, true, true, true };
     position[2] = new boolean[] { true, true, true, true, true };
     return position;
   }

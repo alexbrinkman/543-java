@@ -8,7 +8,7 @@ public class Minimax {
 
   public Board search() {
     System.out.println("Building tree...");
-    MinimaxNode rootNode = new MinimaxNode(this.board).buildTree(this.board);
+    MinimaxNode rootNode = new MinimaxNode(this.board).buildTree(this.board, 0);
 
     System.out.println("Evaluating positions...");
     rootNode = assignNodeValues(rootNode, "max");
@@ -33,6 +33,10 @@ public class Minimax {
   }
 
   private Object[] bestNextMove(MinimaxNode node, String minMax) {
+    if (node.getMoves().isEmpty()) {
+      return new Object[] { 0, null };
+    }
+
     int bestMoveValue = node.getMoves().get(0).getValue();
     MinimaxNode bestMove = node.getMoves().get(0);
 
