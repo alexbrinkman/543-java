@@ -44,12 +44,7 @@ public class Game {
   }
 
   private void switchPlayers() {
-    if (this.whosMove.equals("Human")) {
-      this.whosMove = "Computer";
-    }
-    else {
-      this.whosMove = "Human";
-    }
+    this.whosMove = this.whosMove.equals("Human") ? "Computer" : "Human";
   }
 
 }

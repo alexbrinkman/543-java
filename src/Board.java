@@ -5,12 +5,7 @@ public class Board {
   private boolean[][] position;
 
   public Board(boolean[][] position) {
-    if (position == null) {
-      this.position = initialBoard();
-    }
-    else {
-      this.position = position;
-    }
+    this.position = position == null ? initialBoard() : position;
   }
 
   public void move(int row, int num) {
@@ -68,7 +63,7 @@ public class Board {
     }
 
     if (num >= totalPiecesLeft()) {
-      throw new IllegalArgumentException("Invalid num: you may not take all remaining pieces.");
+      throw new IllegalArgumentException("Invalid number: you may not take all remaining pieces.");
     }
   }
 
