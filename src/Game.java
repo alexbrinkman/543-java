@@ -29,7 +29,7 @@ public class Game {
       this.board.move(move[0], move[1]);
     }
     else {
-      this.board = new Search(this.board).findMove();
+      this.board = new Minimax(this.board).search();
     }
     System.out.println(this.board);
   }
