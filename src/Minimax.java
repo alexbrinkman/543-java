@@ -1,5 +1,6 @@
 public class Minimax {
 
+  public static final int DEPTH = 8;
   private Board board;
 
   public Minimax(Board board) {
@@ -8,7 +9,7 @@ public class Minimax {
 
   public Board search() {
     System.out.println("Building tree...");
-    MinimaxNode rootNode = new MinimaxNode(this.board).buildTree(this.board, 0);
+    MinimaxNode rootNode = buildTree(this.board, 0);
 
     System.out.println("Evaluating positions...");
     rootNode = assignNodeValues(rootNode, "max", -10, 10);
@@ -16,6 +17,17 @@ public class Minimax {
     System.out.println("Making best move...");
     MinimaxNode move = (MinimaxNode)bestNextMove(rootNode, "max")[1];
     return move.getBoard();
+  }
+
+  private MinimaxNode buildTree(Board board, int depth) {
+    MinimaxNode rootNode = new MinimaxNode(board);
+    if (depth > DEPTH) {
+      return rootNode;
+    }
+    for (Board b : board.availableMoves()) {
+      rootNode.getMoves().add(buildTree(b, depth + 1));
+    }
+    return rootNode;
   }
 
   private MinimaxNode assignNodeValues(MinimaxNode rootNode, String maxMin, int alpha, int beta) {
