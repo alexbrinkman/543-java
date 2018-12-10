@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class MinimaxNode {
 
-  public static final int DEPTH = 7;
+  public static final int DEPTH = 8;
 
   private Board board;
   private ArrayList<MinimaxNode> moves;
